@@ -23,6 +23,26 @@ title: Potomac Glen Task Force
       border: 1px solid lightgray;
       margin-top: 2rem;
     }
+    .vis-group[data-groupid="1"] .vis-item {
+      background-color: #f0ad4e;
+      border-color: #eea236;
+    }
+    .vis-group[data-groupid="2"] .vis-item {
+      background-color: #5bc0de;
+      border-color: #46b8da;
+    }
+    .vis-group[data-groupid="3"] .vis-item {
+      background-color: #5cb85c;
+      border-color: #4cae4c;
+    }
+    .vis-group[data-groupid="4"] .vis-item {
+      background-color: #d9534f;
+      border-color: #d43f3a;
+    }
+    .vis-group[data-groupid="5"] .vis-item {
+      background-color: #337ab7;
+      border-color: #2e6da4;
+    }
   </style>
 </head>
 <body>
@@ -121,14 +141,20 @@ title: Potomac Glen Task Force
         document.getElementById('blog-feed').innerText = 'Failed to load updates.';
       });
 
-    // Create a vis.js timeline
     const container = document.getElementById('timeline');
     const items = new vis.DataSet([
-      {id: 1, content: 'Initial Community Meeting', start: '2025-05-01'},
-      {id: 2, content: 'Option Proposals Released', start: '2025-08-01'},
-      {id: 3, content: 'Public Feedback Window', start: '2025-10-15'},
-      {id: 4, content: 'Board Discussion', start: '2026-02-01'},
-      {id: 5, content: 'Final Decision', start: '2026-09-01'}
+      {id: 1, content: 'Initial Community Meeting', start: '2025-05-01', group: 1},
+      {id: 2, content: 'Option Proposals Released', start: '2025-08-01', group: 2},
+      {id: 3, content: 'Public Feedback Window', start: '2025-10-15', group: 3},
+      {id: 4, content: 'Board Discussion', start: '2026-02-01', group: 4},
+      {id: 5, content: 'Final Decision', start: '2026-09-01', group: 5}
+    ]);
+    const groups = new vis.DataSet([
+      {id: 1, content: 'Community'},
+      {id: 2, content: 'MCPS Planning'},
+      {id: 3, content: 'Public Input'},
+      {id: 4, content: 'Board Review'},
+      {id: 5, content: 'Decision'}
     ]);
     const options = {
       width: '100%',
@@ -142,7 +168,7 @@ title: Potomac Glen Task Force
       start: '2025-04-01',
       end: '2026-10-01'
     };
-    new vis.Timeline(container, items, options);
+    new vis.Timeline(container, items, groups, options);
   </script>
 </body>
 </html>
