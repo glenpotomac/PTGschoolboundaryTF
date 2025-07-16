@@ -1,3 +1,8 @@
+---
+layout: default
+title: Potomac Glen Task Force
+---
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -119,17 +124,23 @@
     // Create a vis.js timeline
     const container = document.getElementById('timeline');
     const items = new vis.DataSet([
-      {id: 1, content: 'Initiation', start: '2023-09-01'},
-      {id: 2, content: 'Preliminary Options', start: '2023-12-01'},
-      {id: 3, content: 'Community Feedback', start: '2024-03-01'},
-      {id: 4, content: 'Board Review', start: '2024-06-01'},
-      {id: 5, content: 'Final Decision', start: '2024-09-01'}
+      {id: 1, content: 'Initial Community Meeting', start: '2025-05-01'},
+      {id: 2, content: 'Option Proposals Released', start: '2025-08-01'},
+      {id: 3, content: 'Public Feedback Window', start: '2025-10-15'},
+      {id: 4, content: 'Board Discussion', start: '2026-02-01'},
+      {id: 5, content: 'Final Decision', start: '2026-09-01'}
     ]);
     const options = {
       width: '100%',
       height: '300px',
       margin: { item: 20 },
-      stack: false
+      stack: false,
+      orientation: 'top',
+      editable: false,
+      zoomable: true,
+      moveable: true,
+      start: '2025-04-01',
+      end: '2026-10-01'
     };
     new vis.Timeline(container, items, options);
   </script>
