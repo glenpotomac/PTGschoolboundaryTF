@@ -59,9 +59,9 @@ nav a {
 
 .timeline .line {
   position: absolute;
-  top: 40px;
-  left: 10;
-  right: 10;
+  top: 87px;
+  left: 10px;
+  right: 10px;
   height: 2px;
   background: #ccc;
   z-index: 1;
