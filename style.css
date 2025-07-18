@@ -1,6 +1,6 @@
 body {
   font-family: Arial, sans-serif;
-  margin: 2;
+  margin: 20 rem;
   background: #f9f9f9;
 }
 
@@ -20,6 +20,21 @@ nav a {
   margin: 0 1rem;
   text-decoration: none;
 }
+
+.nav-tabs {
+      margin-left: 2rem;
+      margin-right: 2rem;
+    }
+
+.tab-pane {
+      margin-left: 2rem;
+      margin-right: 2rem;
+    }
+
+.tab-content > .tab-pane {
+      margin: 2rem;
+    }
+
 .container {
   display: flex;
   gap: 2rem;
