@@ -7,7 +7,7 @@ fetch('posts.json')
     data.forEach(post => {
       const div = document.createElement('div');
       div.className = 'post';
-      div.innerHTML = `<h3>${post.title}</h3><p><small>${new Date(post.date).toLocaleDateString()}</small></p><p>${post.content}</p>`;
+      div.innerHTML = `<h3>${post.title}</h3><p><small>${new Date(post.date).toLocaleDateString('en-US', {timeZone: 'UTC'})}</small></p><p>${post.content}</p>`;
       feed.appendChild(div);
     });
   });
