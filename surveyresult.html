@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>School Boundary Task Force</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #f9f9f9;
+    }
+    h1 {
+      text-align: center;
+    }
+    .section {
+      margin-bottom: 40px;
+    }
+    .panel {
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      margin: 10px;
+      flex: 1;
+    }
+    canvas {
+      max-width: 400px;
+      margin: auto;
+      display: block;
+    }
+    .panel-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+  </style>
+
+  </head>
+<body>
+  <h1 class="text-center mb-4">Potomac Glen School Boundary Task Force</h1>
+  <div class="text-center mb-4">
+    <p class="lead text-muted mb-0"><b>Stay informed, make your voice heard, and stand together as a community</b></p>
+  </div>
+
+<!-- Nav tabs -->
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link" href="index.html">Home</a>
+  </li>
+    <li class="nav-item">
+    <a class="nav-link active" href="surveyresult.html">Survey Result</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="resources.html">Resources & FAQ</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="contact_endorsement.html">Contact/Endorsement</a>
+  </li>
+</ul>
+
+  <div class="section" style="display: flex; flex-wrap: wrap; gap: 40px; align-items: center;">
+    <div style="flex: 1; min-width: 300px;">
+      <p><strong>On July 29, MCPS released the raw results of the boundary options survey.</strong> A total of 1,170 individuals responded, representing a diverse mix of racial backgrounds, school clusters, and cities across the county. The overwhelming majority opposed each of the proposed boundary changes—less than 20% of respondents supported any option.</p>
+    </div>
+    <div style="flex: 1; min-width: 300px;">
+      <canvas id="cityChart"></canvas>
+    </div>
+    <canvas id="cityChart"></canvas>
+  </div>
+
+  <div class="section">
+    <h2>Top Themes</h2>
+    <ul>
+      <li><strong>Opposition to reassignments from Churchill to Wootton:</strong> Families cite home buying decisions, proximity, and community ties.</li>
+      <li><strong>Frustration with split feeder patterns:</strong> Especially Hoover MS students split between multiple high schools.</li>
+      <li><strong>Proximity matters:</strong> Many prefer neighborhood schools and oppose long bus commutes.</li>
+      <li><strong>Lack of clarity and trust in the planning process:</strong> Calls for transparency and more inclusive decision-making.</li>
+    </ul>
+    <h2>Notable Quotes</h2>
+    <blockquote>
+      “There was no real opportunity to give feedback before the options were announced.”
+    </blockquote>
+    <blockquote>
+      “Splitting middle school kids is difficult socially and emotionally.”
+    </blockquote>
+    <blockquote>
+      “We live closer to Churchill but are being reassigned to Wootton — make it make sense.”
+    </blockquote>
+  </div>
+
+  <div class="section panel-row">
+    <div class="panel">
+      <h2>Option 1</h2>
+      <canvas id="chart1"></canvas>
+      <h3>Top Concerns</h3>
+      <ul>
+        <li>Reassigning Potomac residents from Churchill to Wootton.</li>
+        <li>Disruption of community cohesion and longer commutes.</li>
+      </ul>
+    </div>
+
+    <div class="panel">
+      <h2>Option 2</h2>
+      <canvas id="chart2"></canvas>
+      <h3>Top Concerns</h3>
+      <ul>
+        <li>Splitting Hoover MS into multiple high schools.</li>
+        <li>Loss of peer continuity and social impact on students.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section panel-row">
+    <div class="panel">
+      <h2>Option 3</h2>
+      <canvas id="chart3"></canvas>
+      <h3>Top Concerns</h3>
+      <ul>
+        <li>Ignoring proximity by assigning nearby communities to distant schools.</li>
+        <li>Increased traffic and travel time.</li>
+      </ul>
+    </div>
+
+    <div class="panel">
+      <h2>Option 4</h2>
+      <canvas id="chart4"></canvas>
+      <h3>Top Concerns</h3>
+      <ul>
+        <li>Broad shifts across clusters with no clear justification.</li>
+        <li>Distrust in planning and equity concerns.</li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    Chart.register(ChartDataLabels);
+
+    const configPie = (ctxId, support, neutral, oppose) => new Chart(
+      document.getElementById(ctxId), {
+        type: 'pie',
+        data: {
+          labels: ['Support', 'Neutral', 'Oppose'],
+          datasets: [{
+            data: [support, neutral, oppose],
+            backgroundColor: ['#4caf50', '#ffeb3b', '#f44336']
+          }]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: {
+              position: 'bottom'
+            },
+            datalabels: {
+              color: '#000',
+              formatter: (value, ctx) => `${value}%`
+            }
+          }
+        },
+        plugins: [ChartDataLabels]
+      }
+    );
+
+    const configBar = () => new Chart(
+      document.getElementById('cityChart'), {
+        type: 'bar',
+        data: {
+          labels: ['Potomac', 'Rockville', 'North Potomac', 'Gaithersburg', 'Others'],
+          datasets: [{
+            label: 'Number of Respondents',
+            data: [468, 292, 176, 117, 117],
+            backgroundColor: '#2196f3'
+          }]
+        },
+        options: {
+          responsive: true,
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+      }
+    );
+
+    // Initialize charts
+    configBar();
+    configPie('chart1', 15, 10, 75);
+    configPie('chart2', 20, 15, 65);
+    configPie('chart3', 18, 12, 70);
+    configPie('chart4', 22, 10, 68);
+  </script>
+</body>
+</html>
